@@ -24,7 +24,7 @@ impl fmt::Display for TokenizerError {
     }
 }
 
-pub fn tokenizer(code: &str) -> Result<Vec<Token>, TokenizerError> {
+pub fn tokenize(code: &str) -> Result<Vec<Token>, TokenizerError> {
     let mut tokens = vec![];
     let mut chars = code.chars();
     let mut cursor = chars.next();
@@ -112,13 +112,7 @@ mod tests {
 
     #[test]
     fn tokenizer_test() {
-        let actual = tokenizer(&INPUT).unwrap();
-        assert_eq!(
-            actual.as_slice(),
-            *TOKENS,
-            "Tokenizer test failed: {:?} != {:?}",
-            actual,
-            *TOKENS,
-        );
+        let actual = tokenize(&INPUT).unwrap();
+        assert_eq!(actual.as_slice(), *TOKENS);
     }
 }
